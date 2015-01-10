@@ -61,6 +61,35 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 };
 ```
+* Edit `copy.js` in `tasks` > `config`, add file copy exclusions for SASS and SCSS:
+```javascript
+module.exports = function(grunt) {
+
+	grunt.config.set('copy', {
+		dev: {
+			files: [{
+				expand: true,
+				cwd: './assets',
+				src: ['**/*.!(coffee|less|scss|sass)'], // Add scss and sass.
+				// Before: src: ['**/*.!(coffee|less)'],
+				// After:  src: ['**/*.!(coffee|less|scss|sass)'],
+				dest: '.tmp/public'
+			}]
+		},
+		build: {
+			files: [{
+				expand: true,
+				cwd: '.tmp/public',
+				src: ['**/*'],
+				dest: 'www'
+			}]
+		}
+	});
+
+	grunt.loadNpmTasks('grunt-contrib-copy');
+};
+
+```
 * Add line `sass:dev` to `register` > `compileAssets.js`:
 ```javascript
 module.exports = function (grunt) {
