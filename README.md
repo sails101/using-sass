@@ -70,9 +70,8 @@ module.exports = function(grunt) {
 			files: [{
 				expand: true,
 				cwd: './assets',
-				src: ['**/*.!(coffee|less|scss|sass)'], // Add scss and sass.
 				// Before: src: ['**/*.!(coffee|less)'],
-				// After:  src: ['**/*.!(coffee|less|scss|sass)'],
+				src: ['**/*.!(coffee|less|scss|sass)'],
 				dest: '.tmp/public'
 			}]
 		},
